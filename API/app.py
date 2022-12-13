@@ -179,12 +179,12 @@ def AlarmaParqueo():
     data = request.json
     response = ""
     estado = parqueo[data["nivel"]-1][data["posicion"]-1]
-    if estado == 1 and data["alarma"] == 1:
+    if estado == 1 and data["Antirrobo"] == 1:
         response = {
             "Mensaje": "Se activó la alarma del parqueo",
             "Alarma": 1
         }
-    elif estado == 1 and data["alarma"] == 0:
+    elif estado == 1 and data["Antirrobo"] == 0:
         response = {
             "Mensaje": "No se activó la alarma del parqueo",
             "Alarma": 0
