@@ -162,7 +162,7 @@ def AlarmaAntirrobos():
                 "Mensaje": "Se activó la alarma antirrobos",
                 "Antirrobo": 1
             }
-        elif data["alarma"] == 0:
+        elif data["Antirrobo"] == 0:
             response = {
                 "Mensaje": "No se activó la alarma antirrobos",
                 "Antirrobo": 0
