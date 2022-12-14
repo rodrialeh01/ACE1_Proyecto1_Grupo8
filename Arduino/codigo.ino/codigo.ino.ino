@@ -58,6 +58,29 @@ byte Carrito2[8] = {
   B00000
 };
 
+byte image02[8] = {B11111, B11100, B11100, B11111, B11111, B11111, B10001, B10001};
+byte image03[8] = {B00000, B10000, B11110, B11101, B11111, B11111, B01000, B10000};
+byte image01[8] = {B00000, B00001, B00111, B00111, B01111, B01111, B00010, B00001};
+byte image42[8] = {B00000,
+                   B00000,
+                   B01110,
+                   B11001,
+                   B10101,
+                   B10011,
+                   B01110,
+                   B00000
+                  };
+byte image43[8] = {
+  B01110,
+  B11001,
+  B10101,
+  B10011,
+  B01110,
+  B00000,
+  B00000,
+  B00000
+};
+
 void verificar() {
   /*if (digitalRead(botonAbrir) == LOW) {
     stepperA.setSpeed(10);
@@ -95,11 +118,17 @@ void setup() {
 
   lcd.createChar(0, Carrito1);
   lcd.createChar(1, Carrito2);
+
+  lcd.createChar(2, image02);
+  lcd.createChar(3, image03);
+  lcd.createChar(4, image01);
+  lcd.createChar(5, image42);
+  lcd.createChar(6, image43);
+
   Menu();
 
 }
 void loop() {
-
 
   if (digitalRead(siguiente) == 1) {
     seleccion++;
@@ -172,17 +201,17 @@ void visualizar() {
   switch (seleccion) {
     case 1:
       lcd.clear();
-      for (int i = 1; i < 15; i++) {
+      for (int i = 1; i < 14; i++) {
         lcd.clear();
         lcd.setCursor(i, 1);
-        if (i % 2 == 0) {
-          lcd.write(byte (0));
-        }
-        else {
-          lcd.write(byte (1));
-        }
+        lcd.write(byte(2));
+        lcd.setCursor(i + 1, 1);
+        lcd.write(byte(3));
+        lcd.setCursor(i - 1, 1);
+        lcd.write(byte(4));
         delay(200);
       }
+
       lcd.clear();
       lcd.setCursor(0, 0);
       lcd.print("Total disponible");
@@ -199,6 +228,27 @@ void visualizar() {
       delay(1200);
       break;
     case 3:
+      lcd.clear();
+      for (int i = 1; i < 14; i++) {
+        lcd.clear();
+        lcd.setCursor(i, 1);
+        lcd.write(byte(2));
+        lcd.setCursor(i + 1, 1);
+        lcd.write(byte(3));
+        lcd.setCursor(i - 1, 1);
+        lcd.write(byte(4));
+
+        if (i % 2 == 0) {
+          lcd.setCursor(i + 2, 1);
+          lcd.write(byte(5));
+        } else {
+          lcd.setCursor(i + 2, 1);
+          lcd.write(byte(6));
+        }
+
+
+        delay(200);
+      }
       lcd.clear();
       lcd.setCursor(0, 0);
       lcd.print("Total ocupado");
