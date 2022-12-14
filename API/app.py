@@ -137,6 +137,404 @@ def ocuparEspacio():
 
     return jsonify(response)
 
+
+@app.route("/espacioOcupado", methods=['GET'])
+def EspacioOcupado():
+    global parqueo
+    for i in range(2):
+        for j in range(16):
+            if(parqueo[i][j]) == 1:
+                if i == 0:
+                    if j == 0:
+                        return jsonify({
+                            "estado": 1,
+                            "parqueo": "A1",
+                            "Alarma": 0
+                        })
+                    elif j == 1:
+                        return jsonify({
+                            "estado": 1,
+                            "parqueo": "A2",
+                            "Alarma": 0
+                        })
+                    elif j == 2:
+                        return jsonify({
+                            "estado": 1,
+                            "parqueo": "A3",
+                            "Alarma": 0
+                        })
+                    elif j == 3:
+                        return jsonify({
+                            "estado": 1,
+                            "parqueo": "A4",
+                            "Alarma": 0
+                        })
+                    elif j == 4:
+                        return jsonify({
+                            "estado": 1,
+                            "parqueo": "B1",
+                            "Alarma": 0
+                        })
+                    elif j == 5:
+                        return jsonify({
+                            "estado": 1,
+                            "parqueo": "B2",
+                            "Alarma": 0
+                        })
+                    elif j == 6:
+                        return jsonify({
+                            "estado": 1,
+                            "parqueo": "B3",
+                            "Alarma": 0
+                        })
+                    elif j == 7:
+                        return jsonify({
+                            "estado": 1,
+                            "parqueo": "B4",
+                            "Alarma": 0
+                        })
+                    elif j == 8:
+                        return jsonify({
+                            "estado": 1,
+                            "parqueo": "C1",
+                            "Alarma": 0
+                        })
+                    elif j == 9:
+                        return jsonify({
+                            "estado": 1,
+                            "parqueo": "C2",
+                            "Alarma": 0
+                        })
+                    elif j == 10:
+                        return jsonify({
+                            "estado": 1,
+                            "parqueo": "C3",
+                            "Alarma": 0
+                        })
+                    elif j == 11:
+                        return jsonify({
+                            "estado": 1,
+                            "parqueo": "C4",
+                            "Alarma": 0
+                        })
+                    elif j == 12:
+                        return jsonify({
+                            "estado": 1,
+                            "parqueo": "D1",
+                            "Alarma": 0
+                        })
+                    elif j == 13:
+                        return jsonify({
+                            "estado": 1,
+                            "parqueo": "D2",
+                            "Alarma": 0
+                        })
+                    elif j == 14:
+                        return jsonify({
+                            "estado": 1,
+                            "parqueo": "D3",
+                            "Alarma": 0
+                        })
+                    elif j == 15:
+                        return jsonify({
+                            "estado": 1,
+                            "parqueo": "D4",
+                            "Alarma": 0
+                        })
+                elif i == 1:
+                    if j == 0:
+                        return jsonify({
+                            "estado": 1,
+                            "parqueo": "E1",
+                            "Alarma": 0
+                        })
+                    elif j == 1:
+                        return jsonify({
+                            "estado": 1,
+                            "parqueo": "E2",
+                            "Alarma": 0
+                        })
+                    elif j == 2:
+                        return jsonify({
+                            "estado": 1,
+                            "parqueo": "E3",
+                            "Alarma": 0
+                        })
+                    elif j == 3:
+                        return jsonify({
+                            "estado": 1,
+                            "parqueo": "E4",
+                            "Alarma": 0
+                        })
+                    elif j == 4:
+                        return jsonify({
+                            "estado": 1,
+                            "parqueo": "F1",
+                            "Alarma": 0
+                        })
+                    elif j == 5:
+                        return jsonify({
+                            "estado": 1,
+                            "parqueo": "F2",
+                            "Alarma": 0
+                        })
+                    elif j == 6:
+                        return jsonify({
+                            "estado": 1,
+                            "parqueo": "F3",
+                            "Alarma": 0
+                        })
+                    elif j == 7:
+                        return jsonify({
+                            "estado": 1,
+                            "parqueo": "F4",
+                            "Alarma": 0
+                        })
+                    elif j == 8:
+                        return jsonify({
+                            "estado": 1,
+                            "parqueo": "G1",
+                            "Alarma": 0
+                        })
+                    elif j == 9:
+                        return jsonify({
+                            "estado": 1,
+                            "parqueo": "G2",
+                            "Alarma": 0
+                        })
+                    elif j == 10:
+                        return jsonify({
+                            "estado": 1,
+                            "parqueo": "G3",
+                            "Alarma": 0
+                        })
+                    elif j == 11:
+                        return jsonify({
+                            "estado": 1,
+                            "parqueo": "G4",
+                            "Alarma": 0
+                        })
+                    elif j == 12:
+                        return jsonify({
+                            "estado": 1,
+                            "parqueo": "H1",
+                            "Alarma": 0
+                        })
+                    elif j == 13:
+                        return jsonify({
+                            "estado": 1,
+                            "parqueo": "H2",
+                            "Alarma": 0
+                        })
+                    elif j == 14:
+                        return jsonify({
+                            "estado": 1,
+                            "parqueo": "H3",
+                            "Alarma": 0
+                        })
+                    elif j == 15:
+                        return jsonify({
+                            "estado": 1,
+                            "parqueo": "H4",
+                            "Alarma": 0
+                        })
+            elif(parqueo[i][j]) == 3:
+                if i == 0:
+                    if j == 0:
+                        return jsonify({
+                            "estado": 3,
+                            "parqueo": "A1",
+                            "Alarma": 0
+                        })
+                    elif j == 1:
+                        return jsonify({
+                            "estado": 3,
+                            "parqueo": "A2",
+                            "Alarma": 0
+                        })
+                    elif j == 2:
+                        return jsonify({
+                            "estado": 3,
+                            "parqueo": "A3",
+                            "Alarma": 0
+                        })
+                    elif j == 3:
+                        return jsonify({
+                            "estado": 3,
+                            "parqueo": "A4",
+                            "Alarma": 0
+                        })
+                    elif j == 4:
+                        return jsonify({
+                            "estado": 3,
+                            "parqueo": "B1",
+                            "Alarma": 0
+                        })
+                    elif j == 5:
+                        return jsonify({
+                            "estado": 3,
+                            "parqueo": "B2",
+                            "Alarma": 0
+                        })
+                    elif j == 6:
+                        return jsonify({
+                            "estado": 3,
+                            "parqueo": "B3",
+                            "Alarma": 0
+                        })
+                    elif j == 7:
+                        return jsonify({
+                            "estado": 3,
+                            "parqueo": "B4",
+                            "Alarma": 0
+                        })
+                    elif j == 8:
+                        return jsonify({
+                            "estado": 3,
+                            "parqueo": "C1",
+                            "Alarma": 0
+                        })
+                    elif j == 9:
+                        return jsonify({
+                            "estado": 3,
+                            "parqueo": "C2",
+                            "Alarma": 0
+                        })
+                    elif j == 10:
+                        return jsonify({
+                            "estado": 3,
+                            "parqueo": "C3",
+                            "Alarma": 0
+                        })
+                    elif j == 11:
+                        return jsonify({
+                            "estado": 3,
+                            "parqueo": "C4",
+                            "Alarma": 0
+                        })
+                    elif j == 12:
+                        return jsonify({
+                            "estado": 3,
+                            "parqueo": "D1",
+                            "Alarma": 0
+                        })
+                    elif j == 13:
+                        return jsonify({
+                            "estado": 3,
+                            "parqueo": "D2",
+                            "Alarma": 0
+                        })
+                    elif j == 14:
+                        return jsonify({
+                            "estado": 3,
+                            "parqueo": "D3",
+                            "Alarma": 0
+                        })
+                    elif j == 15:
+                        return jsonify({
+                            "estado": 3,
+                            "parqueo": "D4",
+                            "Alarma": 0
+                        })
+                elif i == 1:
+                    if j == 0:
+                        return jsonify({
+                            "estado": 3,
+                            "parqueo": "E1",
+                            "Alarma": 0
+                        })
+                    elif j == 1:
+                        return jsonify({
+                            "estado": 3,
+                            "parqueo": "E2",
+                            "Alarma": 0
+                        })
+                    elif j == 2:
+                        return jsonify({
+                            "estado": 3,
+                            "parqueo": "E3",
+                            "Alarma": 0
+                        })
+                    elif j == 3:
+                        return jsonify({
+                            "estado": 3,
+                            "parqueo": "E4",
+                            "Alarma": 0
+                        })
+                    elif j == 4:
+                        return jsonify({
+                            "estado": 3,
+                            "parqueo": "F1",
+                            "Alarma": 0
+                        })
+                    elif j == 5:
+                        return jsonify({
+                            "estado": 3,
+                            "parqueo": "F2",
+                            "Alarma": 0
+                        })
+                    elif j == 6:
+                        return jsonify({
+                            "estado": 3,
+                            "parqueo": "F3",
+                            "Alarma": 0
+                        })
+                    elif j == 7:
+                        return jsonify({
+                            "estado": 3,
+                            "parqueo": "F4",
+                            "Alarma": 0
+                        })
+                    elif j == 8:
+                        return jsonify({
+                            "estado": 3,
+                            "parqueo": "G1",
+                            "Alarma": 0
+                        })
+                    elif j == 9:
+                        return jsonify({
+                            "estado": 3,
+                            "parqueo": "G2",
+                            "Alarma": 0
+                        })
+                    elif j == 10:
+                        return jsonify({
+                            "estado": 3,
+                            "parqueo": "G3",
+                            "Alarma": 0
+                        })
+                    elif j == 11:
+                        return jsonify({
+                            "estado": 3,
+                            "parqueo": "G4",
+                            "Alarma": 0
+                        })
+                    elif j == 12:
+                        return jsonify({
+                            "estado": 3,
+                            "parqueo": "H1",
+                            "Alarma": 0
+                        })
+                    elif j == 13:
+                        return jsonify({
+                            "estado": 3,
+                            "parqueo": "H2",
+                            "Alarma": 0
+                        })
+                    elif j == 14:
+                        return jsonify({
+                            "estado": 3,
+                            "parqueo": "H3",
+                            "Alarma": 0
+                        })
+                    elif j == 15:
+                        return jsonify({
+                            "estado": 3,
+                            "parqueo": "H4",
+                            "Alarma": 0
+                        })
+            
+
 #EN PROTEUS
 @app.route("/desocuparEspacio", methods=['POST'])
 def desocuparEspacio():
