@@ -8,8 +8,12 @@ cont_reserv = 0 #Contador de espacios reservados
 cont_ocup = 0 #Contador de espacios ocupados
 barrera_entrada = 0
 alarma_activa = False
+#verde: 1
+#amarillo: 2
+#rojo: 3
 
 #Creando el parqueo de 2 niveles con 16 espacios cada uno
+#[[1,1,1,1,..],[1,1,1,..]]
 parqueo = []
 for i in range(2):
     parqueo.append([])
@@ -73,6 +77,13 @@ def abrirBarrera_salida():
     }
     return jsonify(barrera)
 
+'''
+#JSON A RECIBIR:
+{
+    "nivel": 1 o 2,
+    "posicion": 1 al 16
+}
+'''
 @app.route("/reservarEspacio", methods=['POST'])
 def reservarEspacio():
     data = request.json
@@ -99,6 +110,7 @@ def reservarEspacio():
 
     return jsonify(response)
    
+#se mira en proteus
 @app.route("/ocuparEspacio", methods=['POST'])
 def ocuparEspacio():
     data = request.json
@@ -125,6 +137,7 @@ def ocuparEspacio():
 
     return jsonify(response)
 
+#EN PROTEUS
 @app.route("/desocuparEspacio", methods=['POST'])
 def desocuparEspacio():
     data = request.json
@@ -151,6 +164,13 @@ def desocuparEspacio():
 
     return jsonify(response)
 
+'''
+JSON A RECIBIR:
+{
+    "nivel": 1 o 2,
+    "posicion": 1 al 16
+}
+'''
 @app.route("/alarmaAntirrobos", methods=['POST'])
 def AlarmaAntirrobos():
     data = request.json
@@ -173,6 +193,14 @@ def AlarmaAntirrobos():
             "Antirrobo": 0
         }
     return jsonify(response)
+
+'''
+JSON:
+{
+    "nivel": 1 o 2,
+    "posicion": 1 al 16
+}
+'''
 
 @app.route("/alarmaParqueo", methods=['POST'])
 def AlarmaParqueo():
