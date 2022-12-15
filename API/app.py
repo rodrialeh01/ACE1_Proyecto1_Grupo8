@@ -93,21 +93,18 @@ def reservarEspacio():
     if estado == 1:
         parqueo[data["nivel"]-1][data["posicion"]-1] = 2
         response = {
-            "Mensaje": "Se reservó con éxito el espacio "+str(data["posicion"])+" del nivel "+str(data["nivel"]),
             "Estado": 1
         }
     elif estado == 2:
+        parqueo[data["nivel"]-1][data["posicion"]-1] = 1
         response = {
-            "Mensaje": "El espacio "+str(data["posicion"])+" del nivel "+str(data["nivel"])+" ya ha sido reservado",
             "Estado": 0
         }
         
     elif estado == 3:
         response = {
-            "Mensaje":"El espacio "+str(data["posicion"])+" del nivel "+str(data["nivel"])+" ya está ocupado",
             "Estado":0
         }
-
     return jsonify(response)
    
 #se mira en proteus
