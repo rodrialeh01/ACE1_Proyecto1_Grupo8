@@ -15,10 +15,13 @@ alarma_activa = False
 #Creando el parqueo de 2 niveles con 16 espacios cada uno
 #[[1,1,1,1,..],[1,1,1,..]]
 parqueo = []
+alarmas = []
 for i in range(2):
     parqueo.append([])
+    alarmas.append([])
     for j in range(8):
         parqueo[i].append(1)
+        alarmas[i].append(0)
 
 @app.route("/")
 def hello_world():
@@ -476,21 +479,18 @@ JSON A RECIBIR:
 '''
 @app.route("/alarmaAntirrobos", methods=['POST'])
 def AlarmaAntirrobos():
+    global alarmas
     data = request.json
     response = ""
-    estado = parqueo[data["nivel"]-1][data["posicion"]-1]
+    estado = alarmas[data["nivel"]-1][data["posicion"]-1]
     if estado == 3:
-        if data["Antirrobo"] == 1:	
-            response = {
-                "Mensaje": "Se activó la alarma antirrobos",
-                "Antirrobo": 1
-            }
-        elif data["Antirrobo"] == 0:
-            response = {
-                "Mensaje": "No se activó la alarma antirrobos",
-                "Antirrobo": 0
-            }
+        alarmas[data["nivel"]-1][data["posicion"]-1] = 1
+        response = {
+            "Mensaje": "Se activó la alarma antirrobos",
+            "Antirrobo": 1
+        }
     else:
+        alarmas[data["nivel"]-1][data["posicion"]-1] = 0
         response = {
             "Mensaje": "No se activó la alarma antirrobos",
             "Antirrobo": 0
