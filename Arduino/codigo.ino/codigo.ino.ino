@@ -2,7 +2,7 @@
 #include <LiquidCrystal_I2C.h>
 #include <Stepper.h> //libreria para el motor
 
-int stepsPerRevolution = 5;
+int stepsPerRevolution = 18;
 Stepper stepperA(stepsPerRevolution, A1, A2, A3, A4);// pines
 #define VELOCIDAD 300
 int botonAbrir = 52;
@@ -83,23 +83,14 @@ byte image43[8] = {
   B00000,
   B00000
 };
+int angulo = 0;
 
 void verificar() {
-  /*if (digitalRead(botonAbrir) == LOW) {
-    stepperA.setSpeed(10);
-    stepsPerRevolution = 5;
-      stepperA.step(stepsPerRevolution);
-
-    }else if (digitalRead(botonCerrar) == LOW){
-    stepperA.setSpeed(10);
-    delay(1500);
-    stepsPerRevolution = 5;
-    stepperA.step(-stepsPerRevolution);
-    }*/
-  stepperA.setSpeed(10);
-  stepperA.step(stepsPerRevolution / 4);
-  delay(1500);
-  stepperA.step(-stepsPerRevolution / 4);
+  stepperA.setSpeed(40);
+  stepperA.step(stepsPerRevolution/4);
+  delay(4000);
+  stepperA.step(-stepsPerRevolution/4);
+  
 }
 
 void setup() {
@@ -118,6 +109,7 @@ void setup() {
   pinMode(A4, OUTPUT);
   pinMode(botonAbrir, INPUT);
   pinMode(botonCerrar, INPUT);
+  pinMode(53, INPUT);
 
   for (int i= 22; i<=37; i++){
     pinMode(i, INPUT);
@@ -136,7 +128,10 @@ void setup() {
 
 }
 void loop() {
-
+  if(digitalRead(53)==HIGH){
+      verificar();
+   }
+   
   if (digitalRead(siguiente) == 1) {
     seleccion++;
     Menu();
