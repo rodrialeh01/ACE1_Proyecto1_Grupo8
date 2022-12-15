@@ -7,6 +7,9 @@ Stepper stepperA(stepsPerRevolution, A1, A2, A3, A4);// pines
 #define VELOCIDAD 300
 int botonAbrir = 52;
 int botonCerrar = 53;
+int Disponible = 16;
+int Ocupado = 0;
+
 
 //configuración ic2
 #define LCD_RS 2
@@ -116,6 +119,10 @@ void setup() {
   pinMode(botonAbrir, INPUT);
   pinMode(botonCerrar, INPUT);
 
+  for (int i= 22; i<=37; i++){
+    pinMode(i, INPUT);
+    }
+
   lcd.createChar(0, Carrito1);
   lcd.createChar(1, Carrito2);
 
@@ -149,6 +156,7 @@ void loop() {
     while (digitalRead(enter));
   }
 
+  Estacionar();
   //verificar();
 }
 
@@ -197,7 +205,7 @@ void Menu() {
 }
 
 void visualizar() {
-  int x = 32;
+  int x = 0;
   switch (seleccion) {
     case 1:
       lcd.clear();
@@ -216,7 +224,7 @@ void visualizar() {
       lcd.setCursor(0, 0);
       lcd.print("Total disponible");
       lcd.setCursor(0, 2);
-      lcd.print(String(x) + " parqueos");
+      lcd.print(String(Disponible) + " parqueos");
       delay(1200);
       break;
     case 2:
@@ -253,8 +261,19 @@ void visualizar() {
       lcd.setCursor(0, 0);
       lcd.print("Total ocupado");
       lcd.setCursor(0, 2);
-      lcd.print(String(x) + " parqueos");
+      lcd.print(String(Ocupado) + " parqueos");
       delay(1200);
       break;
   }
 }
+
+void Estacionar(){
+  Disponible = 16;
+  Ocupado = 0;
+  for (int i= 22; i<=37; i++){
+    if(digitalRead(i)==HIGH){
+      Disponible--;
+      Ocupado++;
+      }
+    }
+  }
