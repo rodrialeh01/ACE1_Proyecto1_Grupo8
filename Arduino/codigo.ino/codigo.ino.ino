@@ -2,11 +2,14 @@
 #include <LiquidCrystal_I2C.h>
 #include <Stepper.h> //libreria para el motor
 
-int stepsPerRevolution = 5;
+int stepsPerRevolution = 18;
 Stepper stepperA(stepsPerRevolution, A1, A2, A3, A4);// pines
 #define VELOCIDAD 300
 int botonAbrir = 52;
 int botonCerrar = 53;
+int Disponible = 16;
+int Ocupado = 0;
+
 
 //configuración ic2
 #define LCD_RS 2
@@ -80,23 +83,14 @@ byte image43[8] = {
   B00000,
   B00000
 };
+int angulo = 0;
 
 void verificar() {
-  /*if (digitalRead(botonAbrir) == LOW) {
-    stepperA.setSpeed(10);
-    stepsPerRevolution = 5;
-      stepperA.step(stepsPerRevolution);
-
-    }else if (digitalRead(botonCerrar) == LOW){
-    stepperA.setSpeed(10);
-    delay(1500);
-    stepsPerRevolution = 5;
-    stepperA.step(-stepsPerRevolution);
-    }*/
-  stepperA.setSpeed(10);
-  stepperA.step(stepsPerRevolution / 4);
-  delay(1500);
-  stepperA.step(-stepsPerRevolution / 4);
+  stepperA.setSpeed(40);
+  stepperA.step(stepsPerRevolution/4);
+  delay(4000);
+  stepperA.step(-stepsPerRevolution/4);
+  
 }
 
 void setup() {
@@ -115,6 +109,11 @@ void setup() {
   pinMode(A4, OUTPUT);
   pinMode(botonAbrir, INPUT);
   pinMode(botonCerrar, INPUT);
+  pinMode(53, INPUT);
+
+  for (int i= 22; i<=37; i++){
+    pinMode(i, INPUT);
+    }
 
   lcd.createChar(0, Carrito1);
   lcd.createChar(1, Carrito2);
@@ -129,7 +128,10 @@ void setup() {
 
 }
 void loop() {
-
+  if(digitalRead(53)==HIGH){
+      verificar();
+   }
+   
   if (digitalRead(siguiente) == 1) {
     seleccion++;
     Menu();
@@ -149,6 +151,7 @@ void loop() {
     while (digitalRead(enter));
   }
 
+  Estacionar();
   //verificar();
 }
 
@@ -197,7 +200,7 @@ void Menu() {
 }
 
 void visualizar() {
-  int x = 32;
+  int x = 0;
   switch (seleccion) {
     case 1:
       lcd.clear();
@@ -216,7 +219,7 @@ void visualizar() {
       lcd.setCursor(0, 0);
       lcd.print("Total disponible");
       lcd.setCursor(0, 2);
-      lcd.print(String(x) + " parqueos");
+      lcd.print(String(Disponible) + " parqueos");
       delay(1200);
       break;
     case 2:
@@ -253,8 +256,19 @@ void visualizar() {
       lcd.setCursor(0, 0);
       lcd.print("Total ocupado");
       lcd.setCursor(0, 2);
-      lcd.print(String(x) + " parqueos");
+      lcd.print(String(Ocupado) + " parqueos");
       delay(1200);
       break;
   }
 }
+
+void Estacionar(){
+  Disponible = 16;
+  Ocupado = 0;
+  for (int i= 22; i<=37; i++){
+    if(digitalRead(i)==HIGH){
+      Disponible--;
+      Ocupado++;
+      }
+    }
+  }
