@@ -87,9 +87,9 @@ int angulo = 0;
 String estado;
 void verificar() {
   stepperA.setSpeed(40);
-  stepperA.step(stepsPerRevolution/4);
+  stepperA.step(stepsPerRevolution / 4);
   delay(4000);
-  stepperA.step(-stepsPerRevolution/4);
+  stepperA.step(-stepsPerRevolution / 4);
 }
 
 void setup() {
@@ -105,14 +105,15 @@ void setup() {
   pinMode(A1, OUTPUT);
   pinMode(A2, OUTPUT);
   pinMode(A3, OUTPUT);
+  pinMode(10, OUTPUT);
   pinMode(A4, OUTPUT);
   pinMode(botonAbrir, INPUT);
   pinMode(botonCerrar, INPUT);
   pinMode(53, INPUT);
 
-  for (int i= 22; i<=37; i++){
+  for (int i = 22; i <= 37; i++) {
     pinMode(i, INPUT);
-    }
+  }
 
   lcd.createChar(0, Carrito1);
   lcd.createChar(1, Carrito2);
@@ -128,10 +129,10 @@ void setup() {
 
 }
 void loop() {
-  if(digitalRead(53)==HIGH){
-      verificar();
-   }
-   
+  if (digitalRead(53) == HIGH) {
+    verificar();
+  }
+
   if (digitalRead(siguiente) == 1) {
     seleccion++;
     Menu();
@@ -150,10 +151,15 @@ void loop() {
     delay(100);
     while (digitalRead(enter));
   }
-  if(Serial.available()>0){
-     estado=Serial.read();
-    Serial.println(estado);
+  if (Serial.available() > 0) {
+    estado = Serial.read();
+    if (estado == 1) {
+      digitalWrite(10, HIGH);
     }
+    else {
+      digitalWrite(10, LOW);
+    }
+  }
   Estacionar();
   //verificar();
 }
@@ -265,13 +271,24 @@ void visualizar() {
   }
 }
 
-void Estacionar(){
+void Estacionar() {
   Disponible = 16;
   Ocupado = 0;
-  for (int i= 22; i<=37; i++){
-    if(digitalRead(i)==HIGH){
+  for (int i = 22; i <= 37; i++) {
+    if (digitalRead(i) == HIGH) {
+      switch (i) {
+        case 22:
+          Serial1.println('');
+          //recibido = cadena.replace(' ', '').split(',')
+          //recibido[0] = nivel
+          //recibido[1] = posicion
+          //recibido[2] = estado
+
+          break;
+      }
+
       Disponible--;
       Ocupado++;
-      }
     }
   }
+}
