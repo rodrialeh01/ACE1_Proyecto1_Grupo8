@@ -4,16 +4,16 @@ const app = express();
 const { SerialPort } = require('serialport')
 
 var port = 3000;
-var arduinoCOMPort = "COM3";
+var arduinoCOMPort = "COM2";
 
-/*var arduinoSerialPort = new SerialPort({ 
+var arduinoSerialPort = new SerialPort({ 
     path: arduinoCOMPort,
     baudRate: 9600
 });
 
 arduinoSerialPort.on('open', function() {
     console.log('El Puerto Serial ' + arduinoCOMPort + ' está abierto.');
-});*/
+});
 
 let cont_disp = 0;
 let cont_reserv = 0;
@@ -153,7 +153,23 @@ app.post('/ocuparEspacio',(req,res) => {
 })
 
 app.get('/espacioOcupado', (req,res) => {
-    espacios = []
+    espacios = [];
+    estacionamientoEstado = [];
+    i=0;
+    arduinoSerialPort.write("Z");
+    while(i<1000){
+        caracter = arduinoSerialPort.read();
+        if (caracter!=null){
+            console.log(caracter.toString());
+            Estado = caracter.toString();
+        }
+        estacionamientoEstado[i]=caracter;
+        i++;
+    }
+    //parqueo1 = 0
+    //parqueo2 = 1 replace /n,""
+    //
+
     for(var i = 0; i < parqueo.length; i++) {
         for(var j = 0; j < parqueo[i].length; j++) {
             if(parqueo[i][j] == 1){

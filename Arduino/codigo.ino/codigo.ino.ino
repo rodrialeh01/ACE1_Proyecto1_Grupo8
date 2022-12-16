@@ -215,6 +215,7 @@ void loop() {
 
   if (Serial1.available() > 0) {
     Reservado();
+    digitalWrite(38,HIGH);
   }
 
 
@@ -238,11 +239,10 @@ void loop() {
   }
   Estacionar();
   verif();
-  Reservado();
 }
 
 void Reservado() {
-  /*estado1 = char(Serial.read());
+  estado1 = (char) Serial1.read();
     if (estado1 == 'A') {
     digitalWrite(38, HIGH);
     delay(5000);
@@ -329,20 +329,25 @@ void Reservado() {
     }
     if (estado1 == 'R') {
     digitalWrite(2, LOW);
-    }*/
-  char ReaderFromNode; // Store current character
-  ReaderFromNode = (char) Serial1.read();
-  digitalWrite(39,HIGH);
-  if(ReaderFromNode=='o'){
-    digitalWrite(38, HIGH);
-    delay(100); 
-  }
-  if(ReaderFromNode=='f'){
-    digitalWrite(38, LOW);
-    delay(100); 
-  }
-  
+    }
+    if (estado1 == 'Z'){
+      EstadoParqueo();
+    }
+
 }
+void EstadoParqueo(){
+    /*
+     * estados parqueos
+     * e1 = ocupado
+     * serial println
+     * serial println(z)
+     */
+     Serial1.println('A');
+     Serial1.println('b');
+     Serial1.println('c');
+     Serial1.println('d');
+     Serial1.println('Z');
+  }
 
 void Menu() {
   switch (seleccion) {
