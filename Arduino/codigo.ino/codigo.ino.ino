@@ -139,7 +139,7 @@ void setup() {
   lcd.createChar(5, image42);
   lcd.createChar(6, image43);
 
-  //Serial.begin(9600); //BLUETOOTH
+  Serial.begin(9600); //BLUETOOTH
   
   Serial1.begin(9600); //API
   
@@ -147,7 +147,7 @@ void setup() {
 
 }
 void loop() {
-  /*if (Serial.available() > 0) {
+  if (Serial.available() > 0) {
     estado = char(Serial.read());
     
     if (estado == '1') {
@@ -156,10 +156,11 @@ void loop() {
     else if(estado =='0') {
       abrirEntrada();
     }
-  }*/
+  }
 
  if(Serial1.available() > 0){
     digitalWrite(7, HIGH);
+    Serial1.println(":(");
   }
 
 

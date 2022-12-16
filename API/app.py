@@ -34,7 +34,7 @@ def iniciarArduino():
     arduino.write(b'o')
     arduino.write(b'l')
     arduino.write(b'a')
-    #arduino.close()
+    arduino.close()
 
 
 @app.route("/")
