@@ -215,7 +215,6 @@ void loop() {
 
   if (Serial1.available() > 0) {
     Reservado();
-    digitalWrite(38,HIGH);
   }
 
 
@@ -247,7 +246,6 @@ void Reservado() {
     digitalWrite(38, HIGH);
     delay(5000);
     digitalWrite(38, LOW);
-    Serial1.println('0');
     }
     if (estado1 == 'B') {
     digitalWrite(39, HIGH);
@@ -336,17 +334,14 @@ void Reservado() {
 
 }
 void EstadoParqueo(){
-    /*
-     * estados parqueos
-     * e1 = ocupado
-     * serial println
-     * serial println(z)
-     */
-     Serial1.println('A');
-     Serial1.println('b');
-     Serial1.println('c');
-     Serial1.println('d');
-     Serial1.println('Z');
+    /*Temporales
+    t1=0
+    
+    
+    */
+    
+     Serial1.println(t1);
+     Serial1.println(t2);
   }
 
 void Menu() {
