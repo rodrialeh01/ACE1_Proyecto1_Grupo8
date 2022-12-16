@@ -238,135 +238,137 @@ void loop() {
   }
   Estacionar();
   verif();
+
 }
 
 void Reservado() {
   estado1 = (char) Serial1.read();
-    if (estado1 == 'A') {
+  if (estado1 == 'A') {
     digitalWrite(38, HIGH);
     delay(5000);
     digitalWrite(38, LOW);
-    }
-    if (estado1 == 'B') {
+
+  }
+  if (estado1 == 'B') {
     digitalWrite(39, HIGH);
     delay(5000);
     digitalWrite(39, LOW);
-    }
-    if (estado1 == 'C') {
+  }
+  if (estado1 == 'C') {
     digitalWrite(40, HIGH);
     delay(5000);
     digitalWrite(40, LOW);
-    }
-    if (estado1 == 'D') {
+  }
+  if (estado1 == 'D') {
     digitalWrite(41, HIGH);
     delay(5000);
     digitalWrite(41, LOW);
-    }
-    if (estado1 == 'E') {
+  }
+  if (estado1 == 'E') {
     digitalWrite(42, HIGH);
     delay(5000);
     digitalWrite(42, LOW);
-    }
-    if (estado1 == 'F') {
+  }
+  if (estado1 == 'F') {
     digitalWrite(43, HIGH);
     delay(5000);
     digitalWrite(43, LOW);
-    }
-    if (estado1 == 'G') {
+  }
+  if (estado1 == 'G') {
     digitalWrite(44, HIGH);
     delay(5000);
     digitalWrite(44, LOW);
-    }
-    if (estado1 == 'H') {
+  }
+  if (estado1 == 'H') {
     digitalWrite(45, HIGH);
     delay(5000);
     digitalWrite(45, LOW);
-    }
-    if (estado1 == 'I') {
+  }
+  if (estado1 == 'I') {
     digitalWrite(46, HIGH);
     delay(5000);
     digitalWrite(46, LOW);
-    }
-    if (estado1 == 'J') {
+  }
+  if (estado1 == 'J') {
     digitalWrite(47, HIGH);
     delay(5000);
     digitalWrite(47, LOW);
-    }
-    if (estado1 == 'K') {
+  }
+  if (estado1 == 'K') {
     digitalWrite(48, HIGH);
     delay(5000);
     digitalWrite(48, LOW);
-    }
-    if (estado1 == 'L') {
+  }
+  if (estado1 == 'L') {
     digitalWrite(49, HIGH);
     delay(5000);
     digitalWrite(49, LOW);
-    }
-    if (estado1 == 'M') {
+  }
+  if (estado1 == 'M') {
     digitalWrite(50, HIGH);
     delay(5000);
     digitalWrite(50, LOW);
-    }
-    if (estado1 == 'N') {
+  }
+  if (estado1 == 'N') {
     digitalWrite(51, HIGH);
     delay(5000);
     digitalWrite(51, LOW);
-    }
-    if (estado1 == 'O') {
+  }
+  if (estado1 == 'O') {
     digitalWrite(52, HIGH);
     delay(5000);
     digitalWrite(52, LOW);
-    }
-    if (estado1 == 'P') {
+  }
+  if (estado1 == 'P') {
     digitalWrite(53, HIGH);
     delay(5000);
     digitalWrite(53, LOW);
-    }
-    if (estado1 == 'Q') {
+  }
+  if (estado1 == 'Q') {
     digitalWrite(2, HIGH);
-    }
-    if (estado1 == 'R') {
+  }
+  if (estado1 == 'R') {
     digitalWrite(2, LOW);
-    }
-    if (estado1 == 'Z'){
-      EstadoParqueo();
-    }
+  }
+  if (estado1 == 'Z') {
+    EstadoParqueo();
+  }
 
 }
-void EstadoParqueo(){
-     Serial1.println(t1);
-     delay(10);
-     Serial1.println(t2);
-     delay(10);
-     Serial1.println(t3);
-     delay(10);
-     Serial1.println(t4);
-     delay(10);
-     Serial1.println(t5);
-     delay(10);
-     Serial1.println(t6);
-     delay(10);
-     Serial1.println(t7);
-     delay(10);
-     Serial1.println(t8);
-     delay(10);
-     Serial1.println(t9);
-     delay(10);
-     Serial1.println(t10);
-     delay(10);
-     Serial1.println(t11);
-     delay(10);
-     Serial1.println(t12);
-     delay(10);
-     Serial1.println(t13);
-     delay(10);
-     Serial1.println(t14);
-     delay(10);
-     Serial1.println(t15);
-     delay(10);
-     Serial1.println(t16);
-     delay(10);
-  }
+void EstadoParqueo() {
+  Serial1.println(t1);
+  delay(10);
+  Serial1.println(t2);
+  delay(10);
+  Serial1.println(t3);
+  delay(10);
+  Serial1.println(t4);
+  delay(10);
+  Serial1.println(t5);
+  delay(10);
+  Serial1.println(t6);
+  delay(10);
+  Serial1.println(t7);
+  delay(10);
+  Serial1.println(t8);
+  delay(10);
+  Serial1.println(t9);
+  delay(10);
+  Serial1.println(t10);
+  delay(10);
+  Serial1.println(t11);
+  delay(10);
+  Serial1.println(t12);
+  delay(10);
+  Serial1.println(t13);
+  delay(10);
+  Serial1.println(t14);
+  delay(10);
+  Serial1.println(t15);
+  delay(10);
+  Serial1.println(t16);
+  delay(10);
+}
 
 void Menu() {
   switch (seleccion) {
@@ -489,141 +491,141 @@ void Estacionar() {
 void verif() {
   if (t1 != digitalRead(22)) {
     if (t1 == 0) {
-     // Serial1.println('A');
+      // Serial1.println('A');
       t1 = 1;
     }
     else {
-     // Serial1.println('a');
+      // Serial1.println('a');
       t1 = 0;
     }
   }
   if (t2 != digitalRead(23)) {
     if (t2 == 0) {
-     // Serial1.println('B');
+      // Serial1.println('B');
       t2 = 1;
     }
     else {
-     // Serial1.println('b');
+      // Serial1.println('b');
       t2 = 0;
     }
   }
   if (t3 != digitalRead(24)) {
     if (t3 == 0) {
-     // Serial1.println('C');
+      // Serial1.println('C');
       t3 = 1;
     }
     else {
-     // Serial1.println('c');
+      // Serial1.println('c');
       t3 = 0;
     }
   }
   if (t4 != digitalRead(25)) {
     if (t4 == 0) {
-    //  Serial1.println('D');
+      //  Serial1.println('D');
       t4 = 1;
     }
     else {
-    //  Serial1.println('d');
+      //  Serial1.println('d');
       t4 = 0;
     }
   }
   if (t5 != digitalRead(26)) {
     if (t5 == 0) {
-    //  Serial1.println('E');
+      //  Serial1.println('E');
       t5 = 1;
     }
     else {
-    //  Serial1.println('e');
+      //  Serial1.println('e');
       t5 = 0;
     }
   }
   if (t6 != digitalRead(27)) {
     if (t6 == 0) {
-    //  Serial1.println('F');
+      //  Serial1.println('F');
       t6 = 1;
     }
     else {
-     // Serial1.println('f');
+      // Serial1.println('f');
       t6 = 0;
     }
   }
   if (t7 != digitalRead(28)) {
     if (t7 == 0) {
-     // Serial1.println('G');
+      // Serial1.println('G');
       t7 = 1;
     }
     else {
-     // Serial1.println('g');
+      // Serial1.println('g');
       t7 = 0;
     }
   }
   if (t8 != digitalRead(29)) {
     if (t8 == 0) {
-   //   Serial1.println('H');
+      //   Serial1.println('H');
       t8 = 1;
     }
     else {
-    //  Serial1.println('h');
+      //  Serial1.println('h');
       t8 = 0;
     }
   }
   if (t9 != digitalRead(30)) {
     if (t9 == 0) {
-    //  Serial1.println('I');
+      //  Serial1.println('I');
       t9 = 1;
     }
     else {
-   //   Serial1.println('i');
+      //   Serial1.println('i');
       t9 = 0;
     }
   }
   if (t10 != digitalRead(31)) {
     if (t10 == 0) {
-    //  Serial1.println('J');
+      //  Serial1.println('J');
       t10 = 1;
     }
     else {
-    //  Serial1.println('j');
+      //  Serial1.println('j');
       t10 = 0;
     }
   }
   if (t11 != digitalRead(32)) {
     if (t11 == 0) {
-   //   Serial1.println('K');
+      //   Serial1.println('K');
       t11 = 1;
     }
     else {
-   //   Serial1.println('k');
-     t11 = 0;
+      //   Serial1.println('k');
+      t11 = 0;
     }
   }
   if (t12 != digitalRead(33)) {
     if (t12 == 0) {
-   //   Serial1.println('L');
+      //   Serial1.println('L');
       t12 = 1;
     }
     else {
-    //  Serial1.println('l');
+      //  Serial1.println('l');
       t12 = 0;
     }
   }
   if (t13 != digitalRead(34)) {
     if (t13 == 0) {
-    //  Serial1.println('M');
+      //  Serial1.println('M');
       t13 = 1;
     }
     else {
-   //   Serial1.println('m');
+      //   Serial1.println('m');
       t13 = 0;
     }
   }
   if (t14 != digitalRead(35)) {
     if (t14 == 0) {
-    //  Serial1.println('N');
+      //  Serial1.println('N');
       t14 = 1;
     }
     else {
-    //  Serial1.println('n');
+      //  Serial1.println('n');
       t14 = 0;
     }
   }
@@ -633,17 +635,17 @@ void verif() {
       t15 = 1;
     }
     else {
-   //   Serial1.println('o');
+      //   Serial1.println('o');
       t15 = 0;
     }
   }
   if (t16 != digitalRead(37)) {
     if (t16 == 0) {
-     // Serial1.println('P');
+      // Serial1.println('P');
       t16 = 1;
     }
     else {
-     // Serial1.println('p');
+      // Serial1.println('p');
       t16 = 0;
     }
   }

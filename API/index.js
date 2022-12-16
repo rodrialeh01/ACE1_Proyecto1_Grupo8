@@ -111,6 +111,71 @@ app.post('/reservarEspacio',(req,res) => {
     estado = parqueo[data.nivel-1][data.posicion-1];
     if(estado == 1){
         parqueo[data.nivel-1][data.posicion-1] = 2;
+        if(parqueo[0][0] == 2){
+            arduinoSerialPort.write('A')
+            parqueo[0][0] = 1
+        }
+        if(parqueo[0][1] == 2){
+            arduinoSerialPort.write('B')
+            parqueo[0][1] =1
+        }
+        if(parqueo[0][2] == 2){
+            arduinoSerialPort.write('C')
+            parqueo[0][2] = 1
+        }
+        if(parqueo[0][3] == 2){
+            arduinoSerialPort.write('D')
+            parqueo[0][3] = 1
+        }
+        if(parqueo[0][4] == 2){
+            arduinoSerialPort.write('E')
+            parqueo[0][4] = 1
+        }
+        if(parqueo[0][5] == 2){
+            arduinoSerialPort.write('F')
+            parqueo[0][5] = 1
+        }
+        if(parqueo[0][6] == 2){
+            arduinoSerialPort.write('G')
+            parqueo[0][6] = 1
+        }
+        if(parqueo[0][7] == 2){
+            arduinoSerialPort.write('H')
+            parqueo[0][7] = 1
+        }
+        if(parqueo[1][0] == 2){
+            arduinoSerialPort.write('I')
+            parqueo[1][0] =1
+        }
+        if(parqueo[1][1] == 2){
+            arduinoSerialPort.write('J')
+            parqueo[1][1] = 1
+        }
+        if(parqueo[1][2] == 2){
+            arduinoSerialPort.write('K')
+            parqueo[1][2] =1
+        }
+        if(parqueo[1][3] == 2){
+            arduinoSerialPort.write('L')
+            parqueo[1][3] = 1
+        }
+        if(parqueo[1][4] == 2){
+            arduinoSerialPort.write('M')
+            parqueo[1][4] = 1
+        }
+        if(parqueo[1][5] == 2){
+            arduinoSerialPort.write('N')
+            parqueo[1][5] = 1
+        }
+        if(parqueo[1][6] == 2){
+            arduinoSerialPort.write('O')
+            parqueo[1][6] = 1
+        }
+        if(parqueo[1][7] == 2){
+            arduinoSerialPort.write('P')
+            parqueo[1][7] = 1
+        }
+
         response = {
             "Estado": 1
         }
@@ -124,6 +189,8 @@ app.post('/reservarEspacio',(req,res) => {
             "Estado":0
         }
     }
+
+
     res.json(response);
 })
 
