@@ -4,16 +4,16 @@ const app = express();
 const { SerialPort } = require('serialport')
 
 var port = 3000;
-var arduinoCOMPort = "COM3";
+var arduinoCOMPort = "COM2";
 
-/*var arduinoSerialPort = new SerialPort({ 
+var arduinoSerialPort = new SerialPort({ 
     path: arduinoCOMPort,
     baudRate: 9600
 });
 
 arduinoSerialPort.on('open', function() {
     console.log('El Puerto Serial ' + arduinoCOMPort + ' está abierto.');
-});*/
+});
 
 let cont_disp = 0;
 let cont_reserv = 0;
@@ -38,22 +38,7 @@ app.get('/', (req,res) => {
     res.send('API');
 });
 
-app.get('/arduino/:action', function (req, res) {
-    
-    var action = req.params.action || req.param('action');
-     
-     if(action == 'led'){
-         arduinoSerialPort.write("w");
-         return res.send('Led light is on!');
-     } 
-     if(action == 'off') {
-         arduinoSerialPort.write("t");
-         return res.send("Led light is off!");
-     }
-     
-     return res.send('Action: ' + action);
-  
- });
+
 
 app.get('/api/students', (req,res) => {
     res.send
@@ -108,14 +93,14 @@ app.get('/abrirBarreraSalida',(req,res) => {
 app.post('/reservarEspacio',(req,res) => {
     data = req.body;
     response = "";
-    estado = parqueo[data.nivel-1][data.posicion-1];
+    estado = parqueo[data["nivel"]-1][data["posicion"]-1];
     if(estado == 1){
-        parqueo[data.nivel-1][data.posicion-1] = 2;
+        parqueo[data["nivel"]-1][data["posicion"]-1] = 2;
         response = {
             "Estado": 1
         }
     }else if(estado == 2){
-        parqueo[data.nivel-1][data.posicion-1] = 1;
+        parqueo[data["nivel"]-1][data["posicion"]-1] = 1;
         response = {
             "Estado": 0
         }
@@ -130,22 +115,21 @@ app.post('/reservarEspacio',(req,res) => {
 app.post('/ocuparEspacio',(req,res) => {
     data = req.body;
     response = "";
-    estado = parqueo[data.nivel-1][data.posicion-1];
+    estado = parqueo[data["nivel"]-1][data["posicion"]-1];
     if(estado == 1){
-        parqueo[data.nivel-1][data.posicion-1] = 3;
-        console.log(parqueo[data.nivel-1][data.posicion-1])
+        parqueo[data["nivel"]-1][data["posicion"]-1] = 3;
         response = {
-            "Mensaje": "Se ocupó con éxito el espacio "+data.posicion.toString()+" del nivel "+data.nivel.toString(),
+            "Mensaje": "Se ocupó con éxito el espacio "+str(data["posicion"])+" del nivel "+str(data["nivel"]),
             "Estado": 1
         }
     }else if(estado == 2){
         response = {
-            "Mensaje": "El espacio "+data.posicion.toString()+" del nivel "+data.nivel.toString()+" ya ha sido reservado",
+            "Mensaje": "El espacio "+str(data["posicion"])+" del nivel "+str(data["nivel"])+" ya ha sido reservado",
             "Estado": 0
         }
     }else if(estado == 3){
         response = {
-            "Mensaje": "El espacio "+data.posicion.toString()+" del nivel "+data.nivel.toString()+" ya está ocupado",
+            "Mensaje": "El espacio "+str(data["posicion"])+" del nivel "+str(data["nivel"])+" ya está ocupado",
             "Estado": 0
         }
     }
@@ -154,6 +138,8 @@ app.post('/ocuparEspacio',(req,res) => {
 
 app.get('/espacioOcupado', (req,res) => {
     espacios = []
+    caracter = arduinoSerialPort.read();
+    console.log(caracter);
     for(var i = 0; i < parqueo.length; i++) {
         for(var j = 0; j < parqueo[i].length; j++) {
             if(parqueo[i][j] == 1){
@@ -469,21 +455,21 @@ app.get('/espacioOcupado', (req,res) => {
 app.post('/desocuparEspacio',(req,res) => {
     data = req.body;
     response = "";
-    estado = parqueo[data.nivel-1][data.posicion-1];
+    estado = parqueo[data["nivel"]-1][data["posicion"]-1];
     if(estado == 1){
         response = {
-            "Mensaje": "El espacio "+data.posicion.toString()+" del nivel "+data.nivel.toString()+" ya está desocupado",
+            "Mensaje": "El espacio "+str(data["posicion"])+" del nivel "+str(data["nivel"])+" ya está desocupado",
             "Estado": 0
         }
     }else if(estado == 2){
         response = {
-            "Mensaje": "El espacio "+data.posicion.toString()+" del nivel "+data.nivel.toString()+" ya ha sido reservado",
+            "Mensaje": "El espacio "+str(data["posicion"])+" del nivel "+str(data["nivel"])+" ya ha sido reservado",
             "Estado": 0
         }
     }else if(estado == 3){
-        parqueo[data.nivel-1][data.posicion-1] = 1;
+        parqueo[data["nivel"]-1][data["posicion"]-1] = 1;
         response = {
-            "Mensaje": "Se desocupó con éxito el espacio "+data.posicion.toString()+" del nivel "+data.nivel.toString(),
+            "Mensaje": "Se desocupó con éxito el espacio "+str(data["posicion"])+" del nivel "+str(data["nivel"]),
             "Estado": 1
         }
     }
@@ -493,17 +479,17 @@ app.post('/desocuparEspacio',(req,res) => {
 app.post('/alarmaAntirrobos',(req,res) => {
     data = req.body;
     response = "";
-    estado = alarmas[data.nivel-1][data.posicion-1];
+    estado = alarmas[data["nivel"]-1][data["posicion"]-1];
     if(estado == 0){
-        alarmas[data.nivel-1][data.posicion-1] = 1;
+        alarmas[data["nivel"]-1][data["posicion"]-1] = 1;
         response = {
-            "Mensaje": "Se activó la alarma del espacio "+data.posicion.toString()+" del nivel "+data.nivel.toString(),
+            "Mensaje": "Se activó la alarma del espacio "+str(data["posicion"])+" del nivel "+str(data["nivel"]),
             "Estado": 1
         }
     }else if(estado == 1){
-        alarmas[data.nivel-1][data.posicion-1] = 0;
+        alarmas[data["nivel"]-1][data["posicion"]-1] = 0;
         response = {
-            "Mensaje": "Se desactivó la alarma del espacio "+data.posicion.toString()+" del nivel "+data.nivel.toString(),
+            "Mensaje": "Se desactivó la alarma del espacio "+str(data["posicion"])+" del nivel "+str(data["nivel"]),
             "Estado": 0
         }
     }
@@ -513,13 +499,13 @@ app.post('/alarmaAntirrobos',(req,res) => {
 app.post('/alarmaParqueo',(req,res) => { 
     data = req.body;
     response = "";
-    estado = alarmas[data.nivel-1][data.posicion-1];
-    if(estado == 1 && data.Antirrobo==1){
+    estado = alarmas[data["nivel"]-1][data["posicion"]-1];
+    if(estado == 1 && data["Antirrobo"]==1){
         response = {
             "Mensaje": "Se activó la alarma del espacio ",
             "Alarma": 1
         }
-    }else if(estado == 1 && data.Antirrobo==0){
+    }else if(estado == 1 && data["Antirrobo"]==0){
         response = {
             "Mensaje": "Se desactivó la alarma del espacio ",
             "Alarma": 0
@@ -531,6 +517,23 @@ app.post('/alarmaParqueo',(req,res) => {
         }
     }
 })
+
+app.get('/Arduino/:action', function (req, res) {
+    
+    var action = req.params.action || req.param('action');
+     
+     if(action == 'led'){
+         arduinoSerialPort.write("o");
+         return res.send('Led light is on!');
+     } 
+     if(action == 'off') {
+         arduinoSerialPort.write("f");
+         return res.send("Led light is off!");
+     }
+     
+     return res.send('Action: ' + action);
+  
+ });
 
 //const port = process.env.port || 8080;
 app.listen(port, () => console.log("Escuchando en el puerto "+port));
