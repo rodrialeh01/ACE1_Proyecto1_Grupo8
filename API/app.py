@@ -29,11 +29,10 @@ for i in range(2):
 
 def iniciarArduino():
     print("aber")
-
-    arduino.write(b'h')
-    arduino.write(b'o')
-    arduino.write(b'l')
-    arduino.write(b'a')
+    while True:
+        res = arduino.readline().decode('utf-8').replace('\n','').replace('\r','')
+        print(str(res))
+        time.sleep(10)
     arduino.close()
 
 

@@ -21,7 +21,7 @@ int Ocupado = 0;
 #define LCD_D6 6
 #define LCD_D7 7
 #define LCD_BACKLIGHT 3
-
+#define BOCINA 2
 //dimensiones
 #define LCD_COLS 16
 #define LCD_ROWS 4
@@ -125,9 +125,14 @@ void setup() {
   pinMode(A6, OUTPUT);
   pinMode(A7, OUTPUT);
   pinMode(A8, OUTPUT);
+  pinMode(BOCINA, OUTPUT);
 
   for (int i = 22; i <= 37; i++) {
     pinMode(i, INPUT);
+  }
+
+  for (int i = 38; i <= 53; i++) {
+    pinMode(i, OUTPUT);
   }
 
   lcd.createChar(0, Carrito1);
@@ -140,27 +145,24 @@ void setup() {
   lcd.createChar(6, image43);
 
   Serial.begin(9600); //BLUETOOTH
-  
   Serial1.begin(9600); //API
-  
   Menu();
 
 }
 void loop() {
   if (Serial.available() > 0) {
     estado = char(Serial.read());
-    
+
     if (estado == '1') {
       abrirSalida();
     }
-    else if(estado =='0') {
+    else if (estado == '0') {
       abrirEntrada();
     }
   }
 
- if(Serial1.available() > 0){
+  if (Serial1.available() > 0) {
     digitalWrite(7, HIGH);
-    Serial1.println(":(");
   }
 
 
@@ -183,8 +185,10 @@ void loop() {
     while (digitalRead(enter));
   }
   
+
+ 
+
   Estacionar();
-  //verificar();
 }
 
 void Menu() {
@@ -299,19 +303,109 @@ void Estacionar() {
   Ocupado = 0;
   for (int i = 22; i <= 37; i++) {
     if (digitalRead(i) == HIGH) {
-      /*switch (i) {
+      switch (i) {
         case 22:
-          //Serial1.println('');
-          //recibido = cadena.replace(' ', '').split(',')
-          //recibido[0] = nivel
-          //recibido[1] = posicion
-          //recibido[2] = estado
-
+          Serial1.println('A');
           break;
-      }*/
-
-      Disponible--;
-      Ocupado++;
+        case 23:
+          Serial1.println('B');
+          break;
+        case 24:
+          Serial1.println('C');
+          break;
+        case 25:
+          Serial1.println('D');
+          break;
+        case 26:
+          Serial1.println('E');
+          break;
+        case 27:
+          Serial1.println('F');
+          break;
+        case 28:
+          Serial1.println('G');
+          break;
+        case 29:
+          Serial1.println('H');
+          break;
+        case 30:
+          Serial1.println('I');
+          break;
+        case 31:
+          Serial1.println('J');
+          break;
+        case 32:
+          Serial1.println('K');
+          break;
+        case 33:
+          Serial1.println('L');
+          break;
+        case 34:
+          Serial1.println('M');
+          break;
+        case 35:
+          Serial1.println('N');
+          break;
+        case 36:
+          Serial1.println('O');
+          break;
+        case 37:
+          Serial1.println('P');
+          break;
+      }
+    } else {
+      switch (i) {
+        case 22:
+          Serial1.println('a');
+          break;
+        case 23:
+          Serial1.println('b');
+          break;
+        case 24:
+          Serial1.println('c');
+          break;
+        case 25:
+          Serial1.println('d');
+          break;
+        case 26:
+          Serial1.println('e');
+          break;
+        case 27:
+          Serial1.println('f');
+          break;
+        case 28:
+          Serial1.println('g');
+          break;
+        case 29:
+          Serial1.println('h');
+          break;
+        case 30:
+          Serial1.println('i');
+          break;
+        case 31:
+          Serial1.println('j');
+          break;
+        case 32:
+          Serial1.println('k');
+          break;
+        case 33:
+          Serial1.println('l');
+          break;
+        case 34:
+          Serial1.println('m');
+          break;
+        case 35:
+          Serial1.println('n');
+          break;
+        case 36:
+          Serial1.println('o');
+          break;
+        case 37:
+          Serial1.println('p');
+          break;
+      }
     }
+    Disponible--;
+    Ocupado++;
   }
 }
