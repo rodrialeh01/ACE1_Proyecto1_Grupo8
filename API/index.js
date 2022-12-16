@@ -530,6 +530,7 @@ app.post('/alarmaParqueo',(req,res) => {
             "Alarma": 0
         }
     }
+    res.json(response);
 })
 
 //const port = process.env.port || 8080;
