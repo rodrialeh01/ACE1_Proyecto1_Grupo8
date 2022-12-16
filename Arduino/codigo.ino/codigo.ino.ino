@@ -87,7 +87,7 @@ byte image43[8] = {
 };
 
 int angulo = 0;
-char estado ;
+char estado, estado1 ;
 void abrirSalida() {
   stepperA.setSpeed(40);
   stepperA.step(stepsPerRevolution / 4);
@@ -214,7 +214,7 @@ void loop() {
   }
 
   if (Serial1.available() > 0) {
-    digitalWrite(7, HIGH);
+    Reservado();
   }
 
 
@@ -238,7 +238,97 @@ void loop() {
   }
   Estacionar();
   verif();
+  Reservado();
+}
 
+void Reservado() {
+  estado1 = char(Serial.read());
+  if (estado1 == 'A') {
+    digitalWrite(38, HIGH);
+    delay(5000);
+    digitalWrite(38, LOW);
+  }
+  if (estado1 == 'B') {
+    digitalWrite(39, HIGH);
+    delay(5000);
+    digitalWrite(39, LOW);
+  }
+  if (estado1 == 'C') {
+    digitalWrite(40, HIGH);
+    delay(5000);
+    digitalWrite(40, LOW);
+  }
+  if (estado1 == 'D') {
+    digitalWrite(41, HIGH);
+    delay(5000);
+    digitalWrite(41, LOW);
+  }
+  if (estado1 == 'E') {
+    digitalWrite(42, HIGH);
+    delay(5000);
+    digitalWrite(42, LOW);
+  }
+  if (estado1 == 'F') {
+    digitalWrite(43, HIGH);
+    delay(5000);
+    digitalWrite(43, LOW);
+  }
+  if (estado1 == 'G') {
+    digitalWrite(44, HIGH);
+    delay(5000);
+    digitalWrite(44, LOW);
+  }
+  if (estado1 == 'H') {
+    digitalWrite(45, HIGH);
+    delay(5000);
+    digitalWrite(45, LOW);
+  }
+  if (estado1 == 'I') {
+    digitalWrite(46, HIGH);
+    delay(5000);
+    digitalWrite(46, LOW);
+  }
+  if (estado1 == 'J') {
+    digitalWrite(47, HIGH);
+    delay(5000);
+    digitalWrite(47, LOW);
+  }
+  if (estado1 == 'K') {
+    digitalWrite(48, HIGH);
+    delay(5000);
+    digitalWrite(48, LOW);
+  }
+  if (estado1 == 'L') {
+    digitalWrite(49, HIGH);
+    delay(5000);
+    digitalWrite(49, LOW);
+  }
+  if (estado1 == 'M') {
+    digitalWrite(50, HIGH);
+    delay(5000);
+    digitalWrite(50, LOW);
+  }
+  if (estado1 == 'N') {
+    digitalWrite(51, HIGH);
+    delay(5000);
+    digitalWrite(51, LOW);
+  }
+  if (estado1 == 'O') {
+    digitalWrite(52, HIGH);
+    delay(5000);
+    digitalWrite(52, LOW);
+  }
+  if (estado1 == 'P') {
+    digitalWrite(53, HIGH);
+    delay(5000);
+    digitalWrite(53, LOW);
+  }
+  if (estado1 == 'Q') {
+    digitalWrite(2, HIGH);
+  }
+  if (estado1 == 'R') {
+    digitalWrite(2, LOW);
+  }
 }
 
 void Menu() {
