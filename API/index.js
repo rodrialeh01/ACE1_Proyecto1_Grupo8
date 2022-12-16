@@ -157,24 +157,168 @@ app.get('/espacioOcupado', (req,res) => {
     estacionamientoEstado = [];
     i=0;
     arduinoSerialPort.write("Z");
-    contador = 0;
     while(i<1000){
         caracter = arduinoSerialPort.read();
         if (caracter!=null){
-            console.log(caracter.toString());
-            Estado = caracter.toString();
-
-            estacionamientoEstado[contador]=Estado;
-            contador++;
+            console.log("AQUI SI ENTRÉ A ESTA COSA")
+            estacionamientoEstado= caracter.toString().replace('\r', '').split('\n')
+           // console.log(contador +  typeof(estacionamientoEstado[contador]));
+            
         }
+        
         i++;
     }
     //parqueo1 = 0
     //parqueo2 = 1 replace /n,""
     //
-    console.log("Estos son los estados: ")
-    for(var u = 0; u<estacionamientoEstado.length; u++){
-        console.log(estacionamientoEstado[u]);
+    
+    for(var u = 0; u<estacionamientoEstado.length -1; u++){
+        estacionamientoEstado[u] = parseInt(estacionamientoEstado[u])
+    }
+    
+    for(var u = 0; u<estacionamientoEstado.length -1; u++){
+        console.log(estacionamientoEstado[u])
+    }
+
+
+    for(var i = 0; i < parqueo.length; i++) {
+        for(var j = 0; j < parqueo[i].length; j++) {
+            if(i==0){
+                if(j==0){
+                    if(estacionamientoEstado[0] == 0){
+                        parqueo[i][j] = 1
+                    }
+                    else if(estacionamientoEstado[0] == 1){
+                        parqueo[i][j] = 3
+                    }
+                }
+                if(j==1){
+                    if(estacionamientoEstado[1] == 0){
+                        parqueo[i][j] = 1
+                    }
+                    else if(estacionamientoEstado[1] == 1){
+                        parqueo[i][j] = 3
+                    }
+                }
+                if(j==2){
+                    if(estacionamientoEstado[2] == 0){
+                        parqueo[i][j] = 1
+                    }
+                    else if(estacionamientoEstado[2] == 1){
+                        parqueo[i][j] = 3
+                    }
+                }
+                if(j==3){
+                    if(estacionamientoEstado[3] == 0){
+                        parqueo[i][j] = 1
+                    }
+                    else if(estacionamientoEstado[3] == 1){
+                        parqueo[i][j] = 3
+                    }
+                }
+                if(j==4){
+                    if(estacionamientoEstado[4] == 0){
+                        parqueo[i][j] = 1
+                    }
+                    else if(estacionamientoEstado[4] == 1){
+                        parqueo[i][j] = 3
+                    }
+                }
+                if(j==5){
+                    if(estacionamientoEstado[5] == 0){
+                        parqueo[i][j] = 1
+                    }
+                    else if(estacionamientoEstado[5] == 1){
+                        parqueo[i][j] = 3
+                    }
+                }
+                if(j==6){
+                    if(estacionamientoEstado[6] == 0){
+                        parqueo[i][j] = 1
+                    }
+                    else if(estacionamientoEstado[6] == 1){
+                        parqueo[i][j] = 3
+                    }
+                }
+                if(j==7){
+                    if(estacionamientoEstado[7] == 0){
+                        parqueo[i][j] = 1
+                    }
+                    else if(estacionamientoEstado[7] == 1){
+                        parqueo[i][j] = 3
+                    }
+                }
+            
+            
+            }
+            else if(i==1){
+                if(j==0){
+                    if(estacionamientoEstado[8] == 0){
+                        parqueo[i][j] = 1
+                    }
+                    else if(estacionamientoEstado[8] == 1){
+                        parqueo[i][j] = 3
+                    }
+                }
+                if(j==1){
+                    if(estacionamientoEstado[9] == 0){
+                        parqueo[i][j] = 1
+                    }
+                    else if(estacionamientoEstado[9] == 1){
+                        parqueo[i][j] = 3
+                    }
+                }
+                if(j==2){
+                    if(estacionamientoEstado[10] == 0){
+                        parqueo[i][j] = 1
+                    }
+                    else if(estacionamientoEstado[10] == 1){
+                        parqueo[i][j] = 3
+                    }
+                }
+                if(j==3){
+                    if(estacionamientoEstado[11] == 0){
+                        parqueo[i][j] = 1
+                    }
+                    else if(estacionamientoEstado[11] == 1){
+                        parqueo[i][j] = 3
+                    }
+                }
+                if(j==4){
+                    if(estacionamientoEstado[12] == 0){
+                        parqueo[i][j] = 1
+                    }
+                    else if(estacionamientoEstado[12] == 1){
+                        parqueo[i][j] = 3
+                    }
+                }
+                if(j==5){
+                    if(estacionamientoEstado[13] == 0){
+                        parqueo[i][j] = 1
+                    }
+                    else if(estacionamientoEstado[13] == 1){
+                        parqueo[i][j] = 3
+                    }
+                }
+                if(j==6){
+                    if(estacionamientoEstado[14] == 0){
+                        parqueo[i][j] = 1
+                    }
+                    else if(estacionamientoEstado[14] == 1){
+                        parqueo[i][j] = 3
+                    }
+                }
+                if(j==7){
+                    if(estacionamientoEstado[15] == 0){
+                        parqueo[i][j] = 1
+                    }
+                    else if(estacionamientoEstado[15] == 1){
+                        parqueo[i][j] = 3
+                    }
+                }
+            
+            }
+        }
     }
 
     for(var i = 0; i < parqueo.length; i++) {
@@ -278,7 +422,8 @@ app.get('/espacioOcupado', (req,res) => {
                             "parqueo": "D4",
                             "Alarma": 0
                         })}
-            }else if(parqueo[i][j] == 2){
+            }
+            else if(parqueo[i][j] == 2){
                 if (i == 0){
                     if (j == 0){
                         espacios.push({
@@ -378,7 +523,9 @@ app.get('/espacioOcupado', (req,res) => {
                             "Alarma": 0
                         })
                     }
-            }else if(parqueo[i][j] == 3){
+            }
+            }
+            else if(parqueo[i][j] == 3){
                 if (i == 0){
                     if (j == 0){
                         espacios.push({
@@ -482,7 +629,6 @@ app.get('/espacioOcupado', (req,res) => {
                 }
             }
         }
-    }
 
     res.contentType('application/json');
     res.send(JSON.stringify(espacios));

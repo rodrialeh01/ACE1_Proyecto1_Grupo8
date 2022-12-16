@@ -335,21 +335,37 @@ void Reservado() {
 }
 void EstadoParqueo(){
      Serial1.println(t1);
+     delay(10);
      Serial1.println(t2);
+     delay(10);
      Serial1.println(t3);
+     delay(10);
      Serial1.println(t4);
+     delay(10);
      Serial1.println(t5);
+     delay(10);
      Serial1.println(t6);
+     delay(10);
      Serial1.println(t7);
+     delay(10);
      Serial1.println(t8);
+     delay(10);
      Serial1.println(t9);
+     delay(10);
      Serial1.println(t10);
+     delay(10);
      Serial1.println(t11);
+     delay(10);
      Serial1.println(t12);
+     delay(10);
      Serial1.println(t13);
+     delay(10);
      Serial1.println(t14);
+     delay(10);
      Serial1.println(t15);
+     delay(10);
      Serial1.println(t16);
+     delay(10);
   }
 
 void Menu() {
@@ -613,7 +629,7 @@ void verif() {
   }
   if (t15 != digitalRead(36)) {
     if (t15 == 0) {
-      Serial1.println('O');
+      //Serial1.println('O');
       t15 = 1;
     }
     else {
