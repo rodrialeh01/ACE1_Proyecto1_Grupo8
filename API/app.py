@@ -32,7 +32,7 @@ def iniciarArduino():
     while True:
         res = arduino.readline().decode('utf-8').replace('\n','').replace('\r','')
         print(str(res))
-        time.sleep(10)
+        #time.sleep(10)
     arduino.close()
 
 

@@ -11,6 +11,7 @@ int botonCerrar = 53;
 int Disponible = 16;
 int Ocupado = 0;
 
+int t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16 = 0;
 
 //configuración ic2
 #define LCD_RS 2
@@ -146,6 +147,57 @@ void setup() {
 
   Serial.begin(9600); //BLUETOOTH
   Serial1.begin(9600); //API
+
+  if (digitalRead(22) == HIGH ) {
+    t1 = 1;
+  }
+  if (digitalRead(23) == HIGH ) {
+    t2 = 1;
+  }
+  if (digitalRead(24) == HIGH ) {
+    t3 = 1;
+  }
+  if (digitalRead(25) == HIGH ) {
+    t4 = 1;
+  }
+  if (digitalRead(26) == HIGH ) {
+    t5 = 1;
+  }
+  if (digitalRead(27) == HIGH ) {
+    t6 = 1;
+  }
+  if (digitalRead(28) == HIGH ) {
+    t7 = 1;
+  }
+  if (digitalRead(29) == HIGH ) {
+    t8 = 1;
+  }
+  if (digitalRead(30) == HIGH ) {
+    t9 = 1;
+  }
+  if (digitalRead(31) == HIGH ) {
+    t10 = 1;
+  }
+  if (digitalRead(32) == HIGH ) {
+    t11 = 1;
+  }
+  if (digitalRead(33) == HIGH ) {
+    t12 = 1;
+  }
+  if (digitalRead(34) == HIGH ) {
+    t13 = 1;
+  }
+  if (digitalRead(35) == HIGH ) {
+    t14 = 1;
+  }
+  if (digitalRead(36) == HIGH ) {
+    t15 = 1;
+  }
+  if (digitalRead(37) == HIGH ) {
+    t16 = 1;
+  }
+
+
   Menu();
 
 }
@@ -184,11 +236,9 @@ void loop() {
     delay(100);
     while (digitalRead(enter));
   }
-  
-
- 
-
   Estacionar();
+  verif();
+
 }
 
 void Menu() {
@@ -303,109 +353,172 @@ void Estacionar() {
   Ocupado = 0;
   for (int i = 22; i <= 37; i++) {
     if (digitalRead(i) == HIGH) {
-      switch (i) {
-        case 22:
-          Serial1.println('A');
-          break;
-        case 23:
-          Serial1.println('B');
-          break;
-        case 24:
-          Serial1.println('C');
-          break;
-        case 25:
-          Serial1.println('D');
-          break;
-        case 26:
-          Serial1.println('E');
-          break;
-        case 27:
-          Serial1.println('F');
-          break;
-        case 28:
-          Serial1.println('G');
-          break;
-        case 29:
-          Serial1.println('H');
-          break;
-        case 30:
-          Serial1.println('I');
-          break;
-        case 31:
-          Serial1.println('J');
-          break;
-        case 32:
-          Serial1.println('K');
-          break;
-        case 33:
-          Serial1.println('L');
-          break;
-        case 34:
-          Serial1.println('M');
-          break;
-        case 35:
-          Serial1.println('N');
-          break;
-        case 36:
-          Serial1.println('O');
-          break;
-        case 37:
-          Serial1.println('P');
-          break;
-      }
-    } else {
-      switch (i) {
-        case 22:
-          Serial1.println('a');
-          break;
-        case 23:
-          Serial1.println('b');
-          break;
-        case 24:
-          Serial1.println('c');
-          break;
-        case 25:
-          Serial1.println('d');
-          break;
-        case 26:
-          Serial1.println('e');
-          break;
-        case 27:
-          Serial1.println('f');
-          break;
-        case 28:
-          Serial1.println('g');
-          break;
-        case 29:
-          Serial1.println('h');
-          break;
-        case 30:
-          Serial1.println('i');
-          break;
-        case 31:
-          Serial1.println('j');
-          break;
-        case 32:
-          Serial1.println('k');
-          break;
-        case 33:
-          Serial1.println('l');
-          break;
-        case 34:
-          Serial1.println('m');
-          break;
-        case 35:
-          Serial1.println('n');
-          break;
-        case 36:
-          Serial1.println('o');
-          break;
-        case 37:
-          Serial1.println('p');
-          break;
-      }
+      Disponible--;
+      Ocupado++;
     }
-    Disponible--;
-    Ocupado++;
   }
+}
+
+void verif() {
+  if (t1 != digitalRead(22)) {
+    if (t1 == 0) {
+      Serial1.println('A');
+      t1 = 1;
+    }
+    else {
+      Serial1.println('a');
+      t1 = 0;
+    }
+  }
+  if (t2 != digitalRead(23)) {
+    if (t2 == 0) {
+      Serial1.println('B');
+      t2 = 1;
+    }
+    else {
+      Serial1.println('b');
+      t2 = 0;
+    }
+  }
+  if (t3 != digitalRead(24)) {
+    if (t3 == 0) {
+      Serial1.println('C');
+      t3 = 1;
+    }
+    else {
+      Serial1.println('c');
+      t3 = 0;
+    }
+  }
+  if (t4 != digitalRead(25)) {
+    if (t4 == 0) {
+      Serial1.println('D');
+      t4 = 1;
+    }
+    else {
+      Serial1.println('d');
+      t4 = 0;
+    }
+  }
+  if (t5 != digitalRead(26)) {
+    if (t5 == 0) {
+      Serial1.println('E');
+      t5 = 1;
+    }
+    else {
+      Serial1.println('e');
+      t5 = 0;
+    }
+  }
+  if (t6 != digitalRead(27)) {
+    if (t6 == 0) {
+      Serial1.println('F');
+      t6 = 1;
+    }
+    else {
+      Serial1.println('f');
+      t6 = 0;
+    }
+  }
+  if (t7 != digitalRead(28)) {
+    if (t7 == 0) {
+      Serial1.println('G');
+      t7 = 1;
+    }
+    else {
+      Serial1.println('g');
+      t7 = 0;
+    }
+  }
+  if (t8 != digitalRead(29)) {
+    if (t8 == 0) {
+      Serial1.println('H');
+      t8 = 1;
+    }
+    else {
+      Serial1.println('h');
+      t8 = 0;
+    }
+  }
+  if (t9 != digitalRead(30)) {
+    if (t9 == 0) {
+      Serial1.println('I');
+      t9 = 1;
+    }
+    else {
+      Serial1.println('i');
+      t9 = 0;
+    }
+  }
+  if (t10 != digitalRead(31)) {
+    if (t10 == 0) {
+      Serial1.println('J');
+      t10 = 1;
+    }
+    else {
+      Serial1.println('j');
+      t10 = 0;
+    }
+  }
+  if (t11 != digitalRead(32)) {
+    if (t11 == 0) {
+      Serial1.println('K');
+      t11 = 1;
+    }
+    else {
+      Serial1.println('k');
+      t11 = 0;
+    }
+  }
+  if (t12 != digitalRead(33)) {
+    if (t12 == 0) {
+      Serial1.println('L');
+      t12 = 1;
+    }
+    else {
+      Serial1.println('l');
+      t12 = 0;
+    }
+  }
+  if (t13 != digitalRead(34)) {
+    if (t13 == 0) {
+      Serial1.println('M');
+      t13 = 1;
+    }
+    else {
+      Serial1.println('m');
+      t13 = 0;
+    }
+  }
+  if (t14 != digitalRead(35)) {
+    if (t14 == 0) {
+      Serial1.println('N');
+      t14 = 1;
+    }
+    else {
+      Serial1.println('n');
+      t14 = 0;
+    }
+  }
+  if (t15 != digitalRead(36)) {
+    if (t15 == 0) {
+      Serial1.println('O');
+      t15 = 1;
+    }
+    else {
+      Serial1.println('o');
+      t15 = 0;
+    }
+  }
+  if (t16 != digitalRead(37)) {
+    if (t16 == 0) {
+      Serial1.println('P');
+      t16 = 1;
+    }
+    else {
+      Serial1.println('p');
+      t16 = 0;
+    }
+  }
+
 }
