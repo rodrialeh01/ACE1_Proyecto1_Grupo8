@@ -157,18 +157,25 @@ app.get('/espacioOcupado', (req,res) => {
     estacionamientoEstado = [];
     i=0;
     arduinoSerialPort.write("Z");
+    contador = 0;
     while(i<1000){
         caracter = arduinoSerialPort.read();
         if (caracter!=null){
             console.log(caracter.toString());
             Estado = caracter.toString();
+
+            estacionamientoEstado[contador]=Estado;
+            contador++;
         }
-        estacionamientoEstado[i]=caracter;
         i++;
     }
     //parqueo1 = 0
     //parqueo2 = 1 replace /n,""
     //
+    console.log("Estos son los estados: ")
+    for(var u = 0; u<estacionamientoEstado.length; u++){
+        console.log(estacionamientoEstado[u]);
+    }
 
     for(var i = 0; i < parqueo.length; i++) {
         for(var j = 0; j < parqueo[i].length; j++) {

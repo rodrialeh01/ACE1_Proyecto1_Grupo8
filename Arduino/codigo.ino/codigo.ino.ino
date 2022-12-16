@@ -334,14 +334,22 @@ void Reservado() {
 
 }
 void EstadoParqueo(){
-    /*Temporales
-    t1=0
-    
-    
-    */
-    
      Serial1.println(t1);
      Serial1.println(t2);
+     Serial1.println(t3);
+     Serial1.println(t4);
+     Serial1.println(t5);
+     Serial1.println(t6);
+     Serial1.println(t7);
+     Serial1.println(t8);
+     Serial1.println(t9);
+     Serial1.println(t10);
+     Serial1.println(t11);
+     Serial1.println(t12);
+     Serial1.println(t13);
+     Serial1.println(t14);
+     Serial1.println(t15);
+     Serial1.println(t16);
   }
 
 void Menu() {
@@ -465,141 +473,141 @@ void Estacionar() {
 void verif() {
   if (t1 != digitalRead(22)) {
     if (t1 == 0) {
-      Serial1.println('A');
+     // Serial1.println('A');
       t1 = 1;
     }
     else {
-      Serial1.println('a');
+     // Serial1.println('a');
       t1 = 0;
     }
   }
   if (t2 != digitalRead(23)) {
     if (t2 == 0) {
-      Serial1.println('B');
+     // Serial1.println('B');
       t2 = 1;
     }
     else {
-      Serial1.println('b');
+     // Serial1.println('b');
       t2 = 0;
     }
   }
   if (t3 != digitalRead(24)) {
     if (t3 == 0) {
-      Serial1.println('C');
+     // Serial1.println('C');
       t3 = 1;
     }
     else {
-      Serial1.println('c');
+     // Serial1.println('c');
       t3 = 0;
     }
   }
   if (t4 != digitalRead(25)) {
     if (t4 == 0) {
-      Serial1.println('D');
+    //  Serial1.println('D');
       t4 = 1;
     }
     else {
-      Serial1.println('d');
+    //  Serial1.println('d');
       t4 = 0;
     }
   }
   if (t5 != digitalRead(26)) {
     if (t5 == 0) {
-      Serial1.println('E');
+    //  Serial1.println('E');
       t5 = 1;
     }
     else {
-      Serial1.println('e');
+    //  Serial1.println('e');
       t5 = 0;
     }
   }
   if (t6 != digitalRead(27)) {
     if (t6 == 0) {
-      Serial1.println('F');
+    //  Serial1.println('F');
       t6 = 1;
     }
     else {
-      Serial1.println('f');
+     // Serial1.println('f');
       t6 = 0;
     }
   }
   if (t7 != digitalRead(28)) {
     if (t7 == 0) {
-      Serial1.println('G');
+     // Serial1.println('G');
       t7 = 1;
     }
     else {
-      Serial1.println('g');
+     // Serial1.println('g');
       t7 = 0;
     }
   }
   if (t8 != digitalRead(29)) {
     if (t8 == 0) {
-      Serial1.println('H');
+   //   Serial1.println('H');
       t8 = 1;
     }
     else {
-      Serial1.println('h');
+    //  Serial1.println('h');
       t8 = 0;
     }
   }
   if (t9 != digitalRead(30)) {
     if (t9 == 0) {
-      Serial1.println('I');
+    //  Serial1.println('I');
       t9 = 1;
     }
     else {
-      Serial1.println('i');
+   //   Serial1.println('i');
       t9 = 0;
     }
   }
   if (t10 != digitalRead(31)) {
     if (t10 == 0) {
-      Serial1.println('J');
+    //  Serial1.println('J');
       t10 = 1;
     }
     else {
-      Serial1.println('j');
+    //  Serial1.println('j');
       t10 = 0;
     }
   }
   if (t11 != digitalRead(32)) {
     if (t11 == 0) {
-      Serial1.println('K');
+   //   Serial1.println('K');
       t11 = 1;
     }
     else {
-      Serial1.println('k');
-      t11 = 0;
+   //   Serial1.println('k');
+     t11 = 0;
     }
   }
   if (t12 != digitalRead(33)) {
     if (t12 == 0) {
-      Serial1.println('L');
+   //   Serial1.println('L');
       t12 = 1;
     }
     else {
-      Serial1.println('l');
+    //  Serial1.println('l');
       t12 = 0;
     }
   }
   if (t13 != digitalRead(34)) {
     if (t13 == 0) {
-      Serial1.println('M');
+    //  Serial1.println('M');
       t13 = 1;
     }
     else {
-      Serial1.println('m');
+   //   Serial1.println('m');
       t13 = 0;
     }
   }
   if (t14 != digitalRead(35)) {
     if (t14 == 0) {
-      Serial1.println('N');
+    //  Serial1.println('N');
       t14 = 1;
     }
     else {
-      Serial1.println('n');
+    //  Serial1.println('n');
       t14 = 0;
     }
   }
@@ -609,17 +617,17 @@ void verif() {
       t15 = 1;
     }
     else {
-      Serial1.println('o');
+   //   Serial1.println('o');
       t15 = 0;
     }
   }
   if (t16 != digitalRead(37)) {
     if (t16 == 0) {
-      Serial1.println('P');
+     // Serial1.println('P');
       t16 = 1;
     }
     else {
-      Serial1.println('p');
+     // Serial1.println('p');
       t16 = 0;
     }
   }
