@@ -4,16 +4,16 @@ const app = express();
 const { SerialPort } = require('serialport')
 
 var port = 3000;
-var arduinoCOMPort = "COM3";
+var arduinoCOMPort = "COM2";
 
-/*var arduinoSerialPort = new SerialPort({ 
+var arduinoSerialPort = new SerialPort({ 
     path: arduinoCOMPort,
     baudRate: 9600
 });
 
 arduinoSerialPort.on('open', function() {
     console.log('El Puerto Serial ' + arduinoCOMPort + ' está abierto.');
-});*/
+});
 
 let cont_disp = 0;
 let cont_reserv = 0;
@@ -38,22 +38,7 @@ app.get('/', (req,res) => {
     res.send('API');
 });
 
-app.get('/:action', function (req, res) {
-    
-    var action = req.params.action || req.param('action');
-     
-     if(action == 'led'){
-         arduinoSerialPort.write("w");
-         return res.send('Led light is on!');
-     } 
-     if(action == 'off') {
-         arduinoSerialPort.write("t");
-         return res.send("Led light is off!");
-     }
-     
-     return res.send('Action: ' + action);
-  
- });
+
 
 app.get('/api/students', (req,res) => {
     res.send
@@ -153,6 +138,8 @@ app.post('/ocuparEspacio',(req,res) => {
 
 app.get('/espacioOcupado', (req,res) => {
     espacios = []
+    caracter = arduinoSerialPort.read();
+    console.log(caracter);
     for(var i = 0; i < parqueo.length; i++) {
         for(var j = 0; j < parqueo[i].length; j++) {
             if(parqueo[i][j] == 1){
@@ -530,6 +517,23 @@ app.post('/alarmaParqueo',(req,res) => {
         }
     }
 })
+
+app.get('/Arduino/:action', function (req, res) {
+    
+    var action = req.params.action || req.param('action');
+     
+     if(action == 'led'){
+         arduinoSerialPort.write("o");
+         return res.send('Led light is on!');
+     } 
+     if(action == 'off') {
+         arduinoSerialPort.write("f");
+         return res.send("Led light is off!");
+     }
+     
+     return res.send('Action: ' + action);
+  
+ });
 
 //const port = process.env.port || 8080;
 app.listen(port, () => console.log("Escuchando en el puerto "+port));
