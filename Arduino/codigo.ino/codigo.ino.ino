@@ -4,6 +4,7 @@
 
 int stepsPerRevolution = 18;
 Stepper stepperA(stepsPerRevolution, A1, A2, A3, A4);// pines
+Stepper stepperB(stepsPerRevolution, A5, A6, A7, A8);// pines
 #define VELOCIDAD 300
 int botonAbrir = 52;
 int botonCerrar = 53;
@@ -84,13 +85,20 @@ byte image43[8] = {
   B00000
 };
 int angulo = 0;
-String estado;
-void verificar() {
+char estado ;
+void abrirSalida() {
   stepperA.setSpeed(40);
   stepperA.step(stepsPerRevolution / 4);
   delay(4000);
   stepperA.step(-stepsPerRevolution / 4);
 }
+void abrirEntrada() {
+  stepperB.setSpeed(40);
+  stepperB.step(stepsPerRevolution / 4);
+  delay(4000);
+  stepperB.step(-stepsPerRevolution / 4);
+}
+
 
 void setup() {
   lcd.begin(LCD_COLS, LCD_ROWS); //16x4
@@ -110,6 +118,11 @@ void setup() {
   pinMode(botonAbrir, INPUT);
   pinMode(botonCerrar, INPUT);
   pinMode(53, INPUT);
+  pinMode(9, OUTPUT);
+  pinMode(A5, OUTPUT);
+  pinMode(A6, OUTPUT);
+  pinMode(A7, OUTPUT);
+  pinMode(A8, OUTPUT);
 
   for (int i = 22; i <= 37; i++) {
     pinMode(i, INPUT);
@@ -129,9 +142,18 @@ void setup() {
 
 }
 void loop() {
-  if (digitalRead(53) == HIGH) {
-    verificar();
+  if (Serial.available() > 0) {
+    estado = char(Serial.read());
+    
+    if (estado == '1') {
+      abrirSalida();
+    }
+    else if(estado =='0') {
+      abrirEntrada();
+    }
   }
+  
+
 
   if (digitalRead(siguiente) == 1) {
     seleccion++;
@@ -151,15 +173,7 @@ void loop() {
     delay(100);
     while (digitalRead(enter));
   }
-  if (Serial.available() > 0) {
-    estado = Serial.read();
-    if (estado == 1) {
-      digitalWrite(10, HIGH);
-    }
-    else {
-      digitalWrite(10, LOW);
-    }
-  }
+  
   Estacionar();
   //verificar();
 }
@@ -276,16 +290,16 @@ void Estacionar() {
   Ocupado = 0;
   for (int i = 22; i <= 37; i++) {
     if (digitalRead(i) == HIGH) {
-      switch (i) {
+      /*switch (i) {
         case 22:
-          Serial1.println('');
+          //Serial1.println('');
           //recibido = cadena.replace(' ', '').split(',')
           //recibido[0] = nivel
           //recibido[1] = posicion
           //recibido[2] = estado
 
           break;
-      }
+      }*/
 
       Disponible--;
       Ocupado++;
