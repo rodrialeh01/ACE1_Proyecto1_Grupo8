@@ -84,13 +84,12 @@ byte image43[8] = {
   B00000
 };
 int angulo = 0;
-
+String estado;
 void verificar() {
   stepperA.setSpeed(40);
   stepperA.step(stepsPerRevolution/4);
   delay(4000);
   stepperA.step(-stepsPerRevolution/4);
-  
 }
 
 void setup() {
@@ -124,6 +123,7 @@ void setup() {
   lcd.createChar(5, image42);
   lcd.createChar(6, image43);
 
+  Serial.begin(9600);
   Menu();
 
 }
@@ -150,7 +150,10 @@ void loop() {
     delay(100);
     while (digitalRead(enter));
   }
-
+  if(Serial.available()>0){
+     estado=Serial.read();
+    Serial.println(estado);
+    }
   Estacionar();
   //verificar();
 }
