@@ -84,6 +84,7 @@ byte image43[8] = {
   B00000,
   B00000
 };
+
 int angulo = 0;
 char estado ;
 void abrirSalida() {
@@ -107,6 +108,7 @@ void setup() {
 
   lcd.setCursor(0, 0);
   lcd.print("Menu Informacion");
+  pinMode(7, OUTPUT);
   pinMode(siguiente, INPUT);
   pinMode(anterior, INPUT);
   pinMode(enter, INPUT);
@@ -137,12 +139,15 @@ void setup() {
   lcd.createChar(5, image42);
   lcd.createChar(6, image43);
 
-  Serial.begin(9600);
+  //Serial.begin(9600); //BLUETOOTH
+  
+  Serial1.begin(9600); //API
+  
   Menu();
 
 }
 void loop() {
-  if (Serial.available() > 0) {
+  /*if (Serial.available() > 0) {
     estado = char(Serial.read());
     
     if (estado == '1') {
@@ -151,8 +156,11 @@ void loop() {
     else if(estado =='0') {
       abrirEntrada();
     }
+  }*/
+
+ if(Serial1.available() > 0){
+    digitalWrite(7, HIGH);
   }
-  
 
 
   if (digitalRead(siguiente) == 1) {

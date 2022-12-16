@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+import serial, time
 
 app = Flask(__name__)
 
@@ -8,6 +9,9 @@ cont_reserv = 0 #Contador de espacios reservados
 cont_ocup = 0 #Contador de espacios ocupados
 barrera_entrada = 0
 alarma_activa = False
+arduino = serial.Serial('COM2', 9600)
+time.sleep(2)
+
 #verde: 1
 #amarillo: 2
 #rojo: 3
@@ -22,6 +26,16 @@ for i in range(2):
     for j in range(8):
         parqueo[i].append(1)
         alarmas[i].append(0)
+
+def iniciarArduino():
+    print("aber")
+
+    arduino.write(b'h')
+    arduino.write(b'o')
+    arduino.write(b'l')
+    arduino.write(b'a')
+    #arduino.close()
+
 
 @app.route("/")
 def hello_world():
@@ -441,6 +455,7 @@ def EspacioOcupado():
                             "parqueo": "D4",
                             "Alarma": 0
                         })
+    
     return jsonify(espacios)
 
 #EN PROTEUS
@@ -528,9 +543,6 @@ def AlarmaParqueo():
     return jsonify(response)
 
 
-
 if __name__ == "__main__":
+    iniciarArduino()
     app.run(host='0.0.0.0', debug=True)
-
-
-
